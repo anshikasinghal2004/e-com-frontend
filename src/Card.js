@@ -1,6 +1,14 @@
 import React from "react";
 
-function PetCard({ pet }) {
+function PetCard({ pet, onBuy }) {
+ 
+  const handleBuy = (pet) => {
+    alert(`You bought a pet`);
+    if (onBuy) {
+      onBuy(pet);
+    };
+  };
+
   return (
     <div className="bg-white p-4 shadow-md rounded-lg border border-gray-200">
       <img
@@ -13,9 +21,16 @@ function PetCard({ pet }) {
       <p className="text-sm text-gray-700">Age: {pet.age}</p>
       <p className="text-sm text-gray-700">Color: {pet.color}</p>
       <p className="text-sm text-gray-700">Cost: ${pet.cost}</p>
-      <p className="text-sm text-gray-700">{pet.description}</p>
+      <p className="text-sm text-gray-700 mb-4">{pet.description}</p>
+      <button
+        onClick={handleBuy}
+        className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-300 transition duration-200"
+      >
+        Buy
+      </button>
     </div>
   );
 }
 
 export default PetCard;
+
